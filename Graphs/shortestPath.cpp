@@ -1,6 +1,3 @@
-// Using BFS => when a Node will be visited very Firstly it will be it's shortest path
-//  after shortest path , the Node can be visited multiplr times more
-// Assume the Weight be 1 of every Edge
 #include <iostream>
 #include <unordered_map>
 #include <queue>
@@ -18,11 +15,12 @@ public:
         // direction 1 => undirected
         // direction 0 => directed
         adjList[u].push_back({v, wt});
-        if (direction == 0)
+        if (direction == 1)
         {
             adjList[v].push_back({u, wt});
         }
     }
+
     void printAdjList()
     {
         for (auto i : adjList)
@@ -35,57 +33,57 @@ public:
             cout << endl;
         }
     }
-    void shortestPathBFS(int src, int dest) // source , destination
-{
-    queue<int> q;
-    unordered_map<int, bool> visited;
-    unordered_map<int, int> parent;
 
-    // Initial step for src
-    q.push(src);
-    visited[src] = true;
-    parent[src] = -1;
-
-    while (!q.empty())
+    void shortestPathBFS(int src, int dest)
     {
-        int fNode = q.front(); // front node
-        q.pop();
+        queue<int> q;
+        unordered_map<int, bool> visited;
+        unordered_map<int, int> parent;
 
-        for (auto nbr : adjList[fNode])
+        // Initial step for src
+        q.push(src);
+        visited[src] = true;
+        parent[src] = -1;
+
+        while (!q.empty())
         {
-            if (!visited[nbr.first])
-            {
-                q.push(nbr.first);
-                visited[nbr.first] = true;
-                parent[nbr.first] = fNode;
+            int fNode = q.front(); // front node
+            q.pop();
 
-                // If the destination is reached, break the loop
-                if (nbr.first == dest)
-                    break;
+            for (auto nbr : adjList[fNode])
+            {
+                if (!visited[nbr.first])
+                {
+                    q.push(nbr.first);
+                    visited[nbr.first] = true;
+                    parent[nbr.first] = fNode;
+
+                    // If the destination is reached, break the loop
+                    if (nbr.first == dest)
+                        goto done;
+                }
             }
         }
-    }
+    done:
 
-    // Reconstruct the path
-    vector<int> path;
-    int node = dest;
-    while (node != -1)
-    {
-        path.push_back(node);
-        node = parent[node];
-    }
+        // Reconstruct the path
+        vector<int> path;
+        int node = dest;
+        while (node != -1)
+        {
+            path.push_back(node);
+            node = parent[node];
+        }
 
-    // Print the Shortest Path
-    cout << "Shortest Path from " << src << " to " << dest << " : ";
-    for (int i = path.size() - 1; i >= 0; --i)
-    {
-        cout << path[i];
-        if (i != 0)
-            cout << " -> ";
+        // Print the Shortest Path
+        cout << "Shortest Path from " << src << " to " << dest << " : ";
+        for (int i = path.size() - 1; i >= 0; i--)
+        {
+            cout << path[i];
+            if (i != 0)
+                cout << " -> ";
+        }
     }
-}
-
-    
 };
 
 int main()
@@ -105,7 +103,7 @@ int main()
     g.addEdge(8, 4, 1, 1);
 
     g.printAdjList();
-    g.shortestPathBFS(0, 5); // source , destination
+    g.shortestPathBFS(0, 4); // source , destination
 
     return 0;
 }
