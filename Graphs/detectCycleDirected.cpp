@@ -93,7 +93,7 @@ public:
         dfsVisited[src] = false;
         return false;
     }
-
+    //TOPOLOGIVAL SORT VIA DFS ALGORITHM
     void topologicalSort(T src, unordered_map<T, bool> &visited, stack<int> &ans)
     {
         // cout << src << " , ";
@@ -109,14 +109,14 @@ public:
         ans.push(src);
     }
 
-    void topologicalSortBFS(int n, vector<int> &ans)
+    void topologicalSortBFS(int n, vector<int> &ans) //Kahn's ALgorithm
     {
         queue<int> q;
         unordered_map<int, int> indegree;
         // sabki indregree calculate kro
         for (auto i : adjList)
         {
-            int src = i.first;
+            // int src = i.first;
             for (auto nbr : i.second)
             {
                 indegree[nbr]++;

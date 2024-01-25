@@ -3,6 +3,8 @@
         "*.html": "html",
         "unordered_map": "cpp",
         "iostream": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "algorithm": "cpp",
+        "list": "cpp"
     }
 }

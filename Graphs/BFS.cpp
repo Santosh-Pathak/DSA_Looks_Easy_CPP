@@ -57,7 +57,7 @@ public:
         }
     }
 }
-unordered_map<int,bool>visited;
+// unordered_map<int,bool>visited;
 void dfs(int src ,unordered_map<int,bool>&visited)
 {
     cout<<src<<" , ";
@@ -77,13 +77,16 @@ void dfs(int src ,unordered_map<int,bool>&visited)
 int main()
 {
     Graph<int> g;
-    g.addEdge(0, 1, 0);
-    g.addEdge(1, 2, 0);
-    g.addEdge(1, 3, 0);
-    g.addEdge(3, 5, 0);
-    g.addEdge(3, 7, 0);
-    g.addEdge(7, 6, 0);
-    g.addEdge(7, 4, 0);
+    // g.addEdge(0, 1, 0);
+    // g.addEdge(1, 2, 0);
+    // g.addEdge(1, 3, 0);
+    // g.addEdge(3, 5, 0);
+    // g.addEdge(3, 7, 0);
+    // g.addEdge(7, 6, 0);
+    // g.addEdge(7, 4, 0);
+    g.addEdge(0, 1, 1);
+    g.addEdge(1, 2, 1);
+    g.addEdge(0, 2, 1);
     
     g.printAdjacency();
     cout << endl; 

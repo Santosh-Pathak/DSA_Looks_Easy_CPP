@@ -8,7 +8,8 @@ using namespace std;
 class Graph
 {
 public:
-    unordered_map<int, list<pair<int, int>>> adjList;
+    unordered_map<int, list<pair<int, int>>> adjList; //here pairis used to store data and node simultaneously
+
 
     void addEdge(int u, int v, int wt, bool direction)
     {
@@ -66,7 +67,7 @@ public:
         }
     done:
 
-        // Reconstruct the path
+        // Reconstruct the path ) => counting the sortest  path ) 
         vector<int> path;
         int node = dest;
         while (node != -1)
