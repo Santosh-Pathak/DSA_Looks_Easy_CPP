@@ -37,6 +37,7 @@ public:
             cout << endl;
         }
     }
+    
     void floydWarshall(int n)
     {
         vector<vector<int>> dist(n, vector<int>(n, 1e9));
@@ -75,7 +76,6 @@ public:
             for(int j=0;j<n;j++)
             {
                 cout<<dist[i][j]<<" ";
-
             }
             cout<<endl;
         }
